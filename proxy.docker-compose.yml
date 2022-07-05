@@ -1,0 +1,22 @@
+version: '3.5'
+
+networks:
+  local-proxy:
+    name: local-proxy
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.100.0/24
+
+services:
+  nginx-proxy-local:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy-local
+    ports:
+      - 80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
+    networks:
+      local-proxy:
+        ipv4_address: 192.168.100.2

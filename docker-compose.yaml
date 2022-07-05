@@ -1,0 +1,51 @@
+version: '3.8'
+
+networks:
+  short-url:
+    driver: bridge
+  local-proxy:
+    external:
+      name: local-proxy
+
+services:
+  short-url-api:
+    container_name: short-url-api
+    build: .
+    command: "sh -c 'npm install && npm run start:dev'"
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+    environment:
+      - VIRTUAL_HOST=short-url.local
+    networks:
+      - local-proxy
+      - short-url
+
+  short-url-db:
+    container_name: short-url-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - TZ=${TZ}
+      - APP_TIMEZONE=${APP_TIMEZONE}
+    image: mariadb:10.5.13
+    ports:
+      - 3306
+      - "8008:3306"
+    volumes:
+      - ./database:/var/lib/mysql
+    networks:
+      - local-proxy
+      - short-url
+
+  short-url-pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: short-url-pma
+    links: 
+      - short-url-db:db
+    environment:
+      - VIRTUAL_HOST=pma.short-url.local
+    networks:
+      - local-proxy
+      - short-url
