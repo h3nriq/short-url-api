@@ -1,16 +1,11 @@
-![Imersão Full Stack && Full Cycle](https://events-fullcycle.s3.amazonaws.com/events-fullcycle/static/site/img/grupo_4417.png)
+# Projeto em construção
+# short-url-api
+API to short urls with nestjs + mariadb
 
-Participe gratuitamente: https://imersao.fullcycle.com.br/
+# Subir projeto 
 
-## Sobre o repositório
-Esse repositório contém o código-fonte ministrado na aula Intensivão com Nest.js: [https://www.youtube.com/watch?v=ucHzhctPlbA](https://www.youtube.com/watch?v=ucHzhctPlbA)
+- Subir o proxy
+``` docker-compose -f proxy.docker-compose.yml up -d ``` 
 
-## Rodar a aplicação
-
-Execute os comandos:
-
-```bash
-docker-compose up
-```
-
-Acesse no browser http://localhost:3000/orders. Use o arquivo `api.http` para testar a API.
+- Subir o projeto
+``` docker-compose up -d ```
