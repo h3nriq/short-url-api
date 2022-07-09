@@ -2,10 +2,20 @@
 # short-url-api
 API to short urls with nestjs + mariadb
 
-# Subir projeto 
+## Configurar projeto 
+
+- Copiar o .env.exemple
+  ```bash
+  cp .env.example .env
+  ```
+## Subir projeto 
 
 - Subir o proxy
-``` docker-compose -f proxy.docker-compose.yml up -d ``` 
+```bash
+ docker-compose -f proxy.docker-compose.yml up -d 
+ ``` 
 
 - Subir o projeto
-``` docker-compose up -d ```
+```bash
+ docker-compose up -d 
+ ```
